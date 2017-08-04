@@ -16,19 +16,14 @@ func main() {
 	// r.GET("/ping", func(c *gin.Context) {
 	// 	c.String(200, "hello wolrd")
 	// })
+	rg1 := r.Group("/api/v1/admin")
+	dispatch.Line(rg1)
+	dispatch.View(rg1)
+	dispatch.Record(rg1)
 
-	// // Get user value
-	// r.GET("/user/:name", func(c *gin.Context) {
-	// 	user := c.Params.ByName("name")
-	// 	value, ok := DB[user]
-	// 	if ok {
-	// 		c.JSON(200, gin.H{"user": user, "value": value})
-	// 	} else {
-	// 		c.JSON(200, gin.H{"user": user, "status": "no value"})
-	// 	}
-	// })
+	// rg2 := r.Group("/common")
+	// common.Platform(rg2)
 
-	modules.Dispatch(r)
 	// Listen and Server in 0.0.0.0:6060
 	r.Run(":6060")
 }
