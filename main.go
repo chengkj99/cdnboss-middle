@@ -1,29 +1,43 @@
 package main
 
 import (
-	"cdnboss-middle/modules/dispatch"
+	"cdnboss-middle/modules/public"
+	"fmt"
+	"net/http"
+	"os"
 
-	"github.com/gin-gonic/gin"
+	"github.com/labstack/gommon/log"
+
+	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 )
 
-var DB = make(map[string]string)
-
 func main() {
-	// Disable Console Color
-	// gin.DisableConsoleColor()
-	r := gin.Default()
-	// // Ping test
-	// r.GET("/ping", func(c *gin.Context) {
-	// 	c.String(200, "hello wolrd")
-	// })
-	rg1 := r.Group("/api/v1/admin")
-	dispatch.Line(rg1)
-	dispatch.View(rg1)
-	dispatch.Record(rg1)
+	e := echo.New()
+	accCdnboss, err := os.OpenFile("acc_cdnboss.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		panic(err)
+	}
+	defer accCdnboss.Close()
+	e.Logger.SetOutput(accCdnboss)
+	e.Logger.SetLevel(log.DEBUG)
 
-	// rg2 := r.Group("/common")
-	// common.Platform(rg2)
+	// 日志输出格式
+	e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
+		Format: "method=${method}, uri=${uri}, status=${status}\n",
+		Output: accCdnboss,
+	}))
 
-	// Listen and Server in 0.0.0.0:6060
-	r.Run(":6060")
+	e.HTTPErrorHandler = func(err error, ctx echo.Context) {
+		code := http.StatusInternalServerError
+		if he, ok := err.(*echo.HTTPError); ok {
+			code = he.Code
+			ctx.JSON(code, he)
+			fmt.Println("code, he.Message..", code, he.Message)
+		}
+	}
+
+	public.ProxyParse(e)
+
+	e.Logger.Fatal(e.Start(":1323"))
 }
