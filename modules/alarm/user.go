@@ -4,8 +4,9 @@ import (
 	"github.com/labstack/echo"
 )
 
-func User(rg *echo.Group) {
-	rg.GET("/user", getUser)
+// Test 路由拦截处理Demo
+func Test(rg *echo.Group) {
+	rg.GET("/test", getUser)
 }
 
 func getUser(c echo.Context) error {

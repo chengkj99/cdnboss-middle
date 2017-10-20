@@ -1,7 +1,6 @@
 package public
 
 import (
-	"cdnboss-middle/modules/alarm"
 	"fmt"
 
 	"github.com/labstack/echo"
@@ -25,7 +24,6 @@ func ProxyParse(e *echo.Echo) {
 	for k, v := range proxyInfo {
 		routerGroup := e.Group(k)
 		Intercept(k, routerGroup)
-		alarm.User(routerGroup)
 		if v.PathRewrite {
 			routerGroup.GET("/*", ReqRelay(v.Target, k))
 		} else {
