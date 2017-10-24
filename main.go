@@ -1,9 +1,9 @@
 package main
 
 import (
-	"cdnboss-middle/modules/public"
 	"fmt"
 	"net/http"
+	"net/url"
 	"os"
 
 	"github.com/labstack/gommon/log"
@@ -37,7 +37,20 @@ func main() {
 		}
 	}
 
-	public.ProxyParse(e)
-
+	// public.ProxyParse(e)
+	url1, _ := url.Parse("http://100.100.84.92:9090")
+	url2, _ := url.Parse("http://100.100.84.92:9090")
+	ProxyConfig := middleware.Proxy(&middleware.RoundRobinBalancer{
+		Targets: []*middleware.ProxyTarget{
+			&middleware.ProxyTarget{
+				URL: url1,
+			},
+			&middleware.ProxyTarget{
+				URL: url2,
+			},
+		},
+	})
+	fmt.Println("ProxyConfig...", &ProxyConfig)
+	// e.Use()
 	e.Logger.Fatal(e.Start(":1323"))
 }

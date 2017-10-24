@@ -7,8 +7,8 @@ import (
 )
 
 type proxyTargetInfo struct {
-	Target      string `json:"target"`
-	PathRewrite bool   `json:"pathRewrite"`
+	Target      []string `json:"target"`
+	PathRewrite bool     `json:"pathRewrite"`
 }
 
 // ProxyParse 将ReadFile(proxy.xx.json)内容解析，生成路由配置
