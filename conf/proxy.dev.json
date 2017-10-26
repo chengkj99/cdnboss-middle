@@ -1,17 +1,14 @@
 {
   "/fcm-api": {
-    "target": ["http://124.160.26.132:51200"],
-    "ProxyMode": "RoundRobinBalancer",
+    "target": ["http://10.200.20.34:51200/v2"],
     "pathRewrite": true
   },
   "/fcm-fbwm": {
-    "target": ["http://124.160.26.132:8085"],
-    "ProxyMode": "RoundRobinBalancer",
+    "target": ["http://monitor.qiniu.io/"],
     "pathRewrite": true
   },
   "/dns-api": {
     "target": ["http://192.168.80.232:5288/v1"],
-    "ProxyMode": "RoundRobinBalancer",
     "pathRewrite": true
   },
   "/attack-log": {
@@ -20,39 +17,35 @@
     "pathRewrite": true
   },
   "/fcm-img": {
-    "target": ["http://124.160.26.132:51204/v2"],
+    "target": ["http://10.200.20.34:51204/v2"],
     "ProxyMode": "RoundRobinBalancer",
     "pathRewrite": true
   },
   "/dns-spiderweb": {
-    "target": ["http://124.160.26.132:51101"],
+    "target": ["http://10.200.20.34:51101", "http://10.200.20.32:51101"],
     "ProxyMode": "RoundRobinBalancer",
     "pathRewrite": true
   },
   "/dns-spiderapi": {
-    "target": ["http://124.160.26.132:51102"],
+    "target": ["http://10.200.20.34:51102", "http://10.200.20.32:51102"],
     "ProxyMode": "RoundRobinBalancer",
     "pathRewrite": true
   },
   "/stm-monitor": {
     "target": ["http://monitor.qiniu.io"],
-    "ProxyMode": "RoundRobinBalancer",
     "pathRewrite": true
   },
   "/qcm-api": {
     "target": ["http://124.160.26.132:8998"],
-    "ProxyMode": "RoundRobinBalancer",
     "pathRewrite": true
   },
 
-  "/api/v1/admin": {
-    "target": ["http://cs.zjmanageplatform.qiniu.io:8090"],
-    "ProxyMode": "RoundRobinBalancer",
+  "/api": {
+    "target": ["http://10.200.20.53:16888"],
     "pathRewrite": false
   },
   "/alarm": {
-    "target": ["http://115.236.16.115:8081", "http://115.236.16.115:8082"],
-    "ProxyMode": "RoundRobinBalancer",
+    "target": ["http://115.236.16.115:8081/"],
     "pathRewrite": true
   },
   "/fuc-api": {
@@ -61,10 +54,23 @@
     "pathRewrite": true
   },
   "/dnsph-api": {
-    "target": ["http://100.100.84.92:9090", "http://100.100.84.92:9090"],
-    "ProxyMode": "RoundRobinBalancer",
+    "target": ["http://124.160.26.132:9090"],
     "pathRewrite": true
+  },
+  "/dispatch-api": {
+    "target": ["http://192.168.92.92:16111"],
+    "pathRewrite": true
+  },
+  "/stm-api": {
+    "target": ["http://10.200.20.34:51030/v2"],
+    "pathRewrite": true
+  },
+  "/stm-fusion-api": {
+    "target": ["http://10.200.20.34:51000/v2"],
+    "pathRewrite": true
+  },
+  "/api/assets": {
+    "target": ["http://10.200.20.53:3002/assets"],
+    "pathRewrite": false
   }
 }
-
-
