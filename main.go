@@ -39,6 +39,6 @@ func main() {
 
 	// 实现代理：透传和自定义处理
 	public.ProxyParse(e)
-	fmt.Println("start with: localhost:1323")
+	fmt.Println("server runing: localhost:1323")
 	e.Logger.Fatal(e.Start(":1323"))
 }

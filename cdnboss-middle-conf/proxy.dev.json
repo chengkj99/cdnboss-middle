@@ -1,0 +1,76 @@
+{
+  "/fcm-api": {
+    "target": ["http://10.200.20.34:51200/v2"],
+    "pathRewrite": true
+  },
+  "/fcm-fbwm": {
+    "target": ["http://monitor.qiniu.io/"],
+    "pathRewrite": true
+  },
+  "/dns-api": {
+    "target": ["http://192.168.80.232:5288/v1"],
+    "pathRewrite": true
+  },
+  "/attack-log": {
+    "target": ["http://124.160.26.132:8086"],
+    "ProxyMode": "RoundRobinBalancer",
+    "pathRewrite": true
+  },
+  "/fcm-img": {
+    "target": ["http://10.200.20.34:51204/v2"],
+    "ProxyMode": "RoundRobinBalancer",
+    "pathRewrite": true
+  },
+  "/dns-spiderweb": {
+    "target": ["http://10.200.20.34:51101", "http://10.200.20.32:51101"],
+    "ProxyMode": "RoundRobinBalancer",
+    "pathRewrite": true
+  },
+  "/dns-spiderapi": {
+    "target": ["http://10.200.20.34:51102", "http://10.200.20.32:51102"],
+    "ProxyMode": "RoundRobinBalancer",
+    "pathRewrite": true
+  },
+  "/stm-monitor": {
+    "target": ["http://monitor.qiniu.io"],
+    "pathRewrite": true
+  },
+  "/qcm-api": {
+    "target": ["http://124.160.26.132:8998"],
+    "pathRewrite": true
+  },
+
+  "/api": {
+    "target": ["http://10.200.20.53:16888"],
+    "pathRewrite": false
+  },
+  "/alarm": {
+    "target": ["http://115.236.16.115:8081/"],
+    "pathRewrite": true
+  },
+  "/fuc-api": {
+    "target": ["http://100.100.84.92:52666/v1"],
+    "ProxyMode": "RoundRobinBalancer",
+    "pathRewrite": true
+  },
+  "/dnsph-api": {
+    "target": ["http://124.160.26.132:9090"],
+    "pathRewrite": true
+  },
+  "/dispatch-api": {
+    "target": ["http://192.168.92.92:16111"],
+    "pathRewrite": true
+  },
+  "/stm-api": {
+    "target": ["http://10.200.20.34:51030/v2"],
+    "pathRewrite": true
+  },
+  "/stm-fusion-api": {
+    "target": ["http://10.200.20.34:51000/v2"],
+    "pathRewrite": true
+  },
+  "/api/assets": {
+    "target": ["http://10.200.20.53:3002/assets"],
+    "pathRewrite": false
+  }
+}
